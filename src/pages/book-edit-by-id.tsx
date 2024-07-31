@@ -5,7 +5,7 @@ import Layout from "../components/layout";
 import { Alert, Button, Checkbox, Container, Divider, NumberInput, TextInput } from "@mantine/core";
 import Loading from "../components/loading";
 import { IconAlertTriangleFilled, IconTrash } from "@tabler/icons-react";
-import { isNotEmpty, useForm } from "@mantine/form";
+import { useForm } from "@mantine/form";
 import { useEffect, useState } from "react";
 import axios, { AxiosError } from "axios";
 import { notifications } from "@mantine/notifications";
@@ -26,12 +26,11 @@ export default function BookEditById() {
       author: "",
       year: 2024,
       is_published: false,
+      shortstory: ""
     },
 
     validate: {
-      title: isNotEmpty("กรุณาระบุชื่อหนังสือ"),
-      author: isNotEmpty("กรุณาระบุชื่อผู้แต่ง"),
-      year: isNotEmpty("กรุณาระบุปีที่พิมพ์หนังสือ"),
+
     },
   });
 
@@ -153,6 +152,12 @@ export default function BookEditById() {
                   label="ชื่อผู้แต่ง"
                   placeholder="ชื่อผู้แต่ง"
                   {...bookEditForm.getInputProps("author")}
+                />
+
+                <TextInput
+                  label="เรื่องย่อ"
+                  placeholder="เรื่องย่อ"
+                  {...bookEditForm.getInputProps("shortstory")}
                 />
 
                 <NumberInput

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/layout";
-import { Button, Checkbox, Container, Divider, NumberInput, TextInput } from "@mantine/core";
+import { Button, Checkbox, Container, Divider, NumberInput, Select, TextInput } from "@mantine/core";
 import { isNotEmpty, useForm } from "@mantine/form";
 import { useState } from "react";
 import axios, { AxiosError } from "axios";
@@ -18,12 +18,18 @@ export default function BookCreatePage() {
       author: "",
       year: 2024,
       is_published: false,
+      tailde: "", 
+      shortstory: "",
+      group: "",
     },
 
     validate: {
       title: isNotEmpty("กรุณาระบุชื่อหนังสือ"),
       author: isNotEmpty("กรุณาระบุชื่อผู้แต่ง"),
       year: isNotEmpty("กรุณาระบุปีที่พิมพ์หนังสือ"),
+      tailde: isNotEmpty("กรุณาระบุรายละเอียดหนังสือ"), 
+      shortstory: isNotEmpty("กรุณาระบุเรื่องย่อหนังสือ"),
+      group: isNotEmpty("กรุณาระบุหมวดหมู่หนังสือ"),
     },
   });
 
@@ -91,9 +97,26 @@ export default function BookCreatePage() {
               {...bookCreateForm.getInputProps("year")}
             />
 
+            <TextInput
+              label="รายละเอียดหนังสือ"
+              placeholder="รายละเอียดหนังสือ"
+              {...bookCreateForm.getInputProps("tailde")}
+            />
+            <TextInput
+              label="เรื่องย่อ"
+              placeholder="เรื่องย่อ"
+              {...bookCreateForm.getInputProps("shortstory")}
+            />
+            <Select
+              label="หมวดหมู่"
+              placeholder="เลือกหมวดหมู่"
+              data={['หนังสือวิทยาศาสตร์', 'นวนิยาย', 'การ์ตูน', 'ประวัติศาสตร์', 'ภาษาไทย']}
+              {...bookCreateForm.getInputProps("group")}
+            />
             {/* TODO: เพิ่มรายละเอียดหนังสือ */}
             {/* TODO: เพิ่มเรื่องย่อ */}
             {/* TODO: เพิ่มหมวดหมู่(s) */}
+            
 
             <Checkbox
               label="เผยแพร่"
@@ -113,3 +136,5 @@ export default function BookCreatePage() {
     </>
   );
 }
+
+///แก้บรรทัดที่ 15 26 100
